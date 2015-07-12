@@ -31,7 +31,6 @@
   <!-- bower:css -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/fontawesome/4.3.0/css/font-awesome.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.5.0/styles/default.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap/3.3.4/css/bootstrap.min.css">
   <link rel="stylesheet" href="styles/libs.min.css">
   <!-- endinject -->
   <link rel="stylesheet" href="bower_components/highlightjs/styles/github.css">
@@ -458,6 +457,13 @@
       <small>(using data-template)</small>
     </button>
 
+    <!-- You can use a custom html template with the `data-template` attr -->
+    <button type="button" class="btn btn-lg btn-danger" ng-click="showModal()">Modal
+      <br>
+      <small>(using service)</small>
+    </button>
+
+
   </div>
 
   <div class="callout callout-info">
@@ -589,9 +595,33 @@
           </td>
         </tr>
         <tr>
-          <td>template</td>
-          <td>path</td>
+          <td>controller</td>
+          <td>string|function</td>
           <td>false</td>
+          <td>
+            <p>Controller fn that should be associated with newly created scope or the name of a registered controller if passed as a string.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>controllerAs</td>
+          <td>string</td>
+          <td>false</td>
+          <td>
+            <p>A controller alias name. If present the controller will be published to scope under the `controllerAs` name.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>template</td>
+          <td>string</td>
+          <td>&apos;&apos;</td>
+          <td>
+            <p>Provide an html template as a string (when templateUrl is falsy).</p>
+          </td>
+        </tr>
+        <tr>
+          <td>templateUrl</td>
+          <td>path</td>
+          <td>&apos;modal/modal.tpl.html&apos;</td>
           <td>
             <p>If provided, overrides the default template, can be either a remote URL or a cached template id.</p>
             <p>It should be a <code>div.modal</code> element following Bootstrap styles conventions (<a href="//github.com/mgcrea/angular-strap/blob/master/src/modal/modal.tpl.html" target="_blank">like this</a>).</p>
@@ -795,13 +825,37 @@
  <code>container: &apos;body&apos;</code>. This option is particularly useful in that it allows you to position the popover in the flow of the document near the triggering element -&#xA0;which will prevent the popover from floating away from the triggering element during a window resize.</p>
           </td>
         </tr>
-<tr>
-          <td>template</td>
-          <td>path</td>
+        <tr>
+          <td>controller</td>
+          <td>string|function</td>
           <td>false</td>
           <td>
+            <p>Controller fn that should be associated with newly created scope or the name of a registered controller if passed as a string.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>controllerAs</td>
+          <td>string</td>
+          <td>false</td>
+          <td>
+            <p>A controller alias name. If present the controller will be published to scope under the `controllerAs` name.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>template</td>
+          <td>string</td>
+          <td>&apos;&apos;</td>
+          <td>
+            <p>Provide an html template as a string (when templateUrl is falsy).</p>
+          </td>
+        </tr>
+        <tr>
+          <td>templateUrl</td>
+          <td>path</td>
+          <td>&apos;aside/aside.tpl.html&apos;</td>
+          <td>
             <p>If provided, overrides the default template, can be either a remote URL or a cached template id.</p>
-            <p>It should be a <code>div.aside</code> element following Bootstrap styles conventions (<a href="//github.com/mgcrea/angular-strap/blob/master/src/aside/aside.tpl.html" target="_blank">like this</a>).</p>
+            <p>It should be a <code>div.aside</code> element following Bootstrap Additions styles conventions (<a href="//github.com/mgcrea/angular-strap/blob/master/src/aside/aside.tpl.html" target="_blank">like this</a>).</p>
           </td>
         </tr>
         <tr>
@@ -983,11 +1037,36 @@ so remove the option then. Just looks bad to have an option that doesn't work
           </td>
         </tr>
         <tr>
-          <td>template</td>
-          <td>path</td>
+          <td>controller</td>
+          <td>string|function</td>
           <td>false</td>
           <td>
+            <p>Controller fn that should be associated with newly created scope or the name of a registered controller if passed as a string.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>controllerAs</td>
+          <td>string</td>
+          <td>false</td>
+          <td>
+            <p>A controller alias name. If present the controller will be published to scope under the `controllerAs` name.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>template</td>
+          <td>string</td>
+          <td>&apos;&apos;</td>
+          <td>
+            <p>Provide an html template as a string (when templateUrl is falsy).</p>
+          </td>
+        </tr>
+        <tr>
+          <td>templateUrl</td>
+          <td>path</td>
+          <td>&apos;alert/alert.tpl.html&apos;</td>
+          <td>
             <p>If provided, overrides the default template, can be either a remote URL or a cached template id.</p>
+            <p>It should be a <code>div.alert</code> element following Bootstrap styles conventions (<a href="//github.com/mgcrea/angular-strap/blob/master/src/alert/alert.tpl.html" target="_blank">like this</a>).</p>
           </td>
         </tr>
         <tr>
@@ -1719,6 +1798,14 @@ $scope.selectedAddress = &quot;{{selectedAddress}}&quot;;
             Whether or not the suggestions collection should be watched for changes.
           </td>
         </tr>
+        <tr>
+          <td>trimValue</td>
+          <td>boolean</td>
+          <td>true</td>
+          <td>
+            If provided and set to false, overrides the default behavior of automatically trimming spaces from inputs. (Added in 2.2.4)
+          </td>
+        </tr>        
       </tbody>
     </table>
   </div>
@@ -1921,8 +2008,8 @@ $scope.untilDate = {{untilDate}}; // &lt;- {{ getType(&apos;untilDate&apos;) }}
           <td>string</td>
           <td>null</td>
           <td>
-            <p>Timezone of your date - UTC</p>
-            <p>Right now, only &quot;UTC&quot; is supported.</p>
+            <p>Timezone of your date - null, UTC</p>
+            <p>&quot;UTC&quot; for UTC or null for local timezone.</p>
           </td>
         </tr>
         <tr>
@@ -3509,9 +3596,9 @@ $scope.panels.activePanel = {{ panels.activePanel }};
 </div>
 
   <!-- bower:js -->
-  <script src="//cdn.jsdelivr.net/angularjs/1.3.15/angular.min.js"></script>
-  <script src="//cdn.jsdelivr.net/angularjs/1.3.15/angular-animate.min.js"></script>
-  <script src="//cdn.jsdelivr.net/angularjs/1.3.15/angular-route.min.js"></script>
+  <script src="//cdn.jsdelivr.net/angularjs/1.4/angular.min.js"></script>
+  <script src="//cdn.jsdelivr.net/angularjs/1.4/angular-animate.min.js"></script>
+  <script src="//cdn.jsdelivr.net/angularjs/1.4/angular-route.min.js"></script>
   <script src="//cdn.jsdelivr.net/highlight.js/8.5.0/highlight.min.js"></script>
   <script src="scripts/libs.min.js"></script>
   <!-- endinject -->
