@@ -7,17 +7,6 @@
  */
 (function(window, document, undefined) {
   'use strict';
-  angular.module('mgcrea.ngStrapDocs').config([ '$asideProvider', function($asideProvider) {
-    angular.extend($asideProvider.defaults, {
-      container: 'body',
-      html: true
-    });
-  } ]).controller('AsideDemoCtrl', [ '$scope', function($scope) {
-    $scope.aside = {
-      title: 'Title',
-      content: 'Hello Aside<br />This is a multiline message!'
-    };
-  } ]);
   angular.module('mgcrea.ngStrapDocs').controller('AlertDemoCtrl', [ '$scope', '$templateCache', '$timeout', '$alert', function($scope, $templateCache, $timeout, $alert) {
     $scope.alert = {
       title: 'Holy guacamole!',
@@ -34,6 +23,17 @@
     });
     $scope.showAlert = function() {
       myAlert.show();
+    };
+  } ]);
+  angular.module('mgcrea.ngStrapDocs').config([ '$asideProvider', function($asideProvider) {
+    angular.extend($asideProvider.defaults, {
+      container: 'body',
+      html: true
+    });
+  } ]).controller('AsideDemoCtrl', [ '$scope', function($scope) {
+    $scope.aside = {
+      title: 'Title',
+      content: 'Hello Aside<br />This is a multiline message!'
     };
   } ]);
   angular.module('mgcrea.ngStrapDocs').controller('ButtonDemoCtrl', [ '$scope', function($scope) {
