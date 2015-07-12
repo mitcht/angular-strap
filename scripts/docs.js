@@ -45,6 +45,41 @@
       var myPlunkr = $plunkr();
     };
   } ]);
+  angular.module('mgcrea.ngStrapDocs').directive('appendSource', [ '$window', '$compile', 'indent', function($window, $compile, indent) {
+    return {
+      compile: function(element, attr) {
+        var options = {
+          placement: 'after'
+        };
+        angular.forEach([ 'placement', 'hlClass' ], function(key) {
+          if (angular.isDefined(attr[key])) options[key] = attr[key];
+        });
+        var hlElement = angular.element('<div class="highlight" ng-non-bindable><pre><code class="html" style="margin:0"></code></pre></div>');
+        var codeElement = hlElement.children('pre').children('code');
+        var elementHtml = indent(element.html());
+        codeElement.text(elementHtml);
+        if (options.hlClass) codeElement.addClass(options.hlClass);
+        element[options.placement](hlElement);
+        $window.hljs.highlightBlock(codeElement[0]);
+      }
+    };
+  } ]);
+  angular.module('mgcrea.ngStrapDocs').directive('code', function() {
+    return {
+      restrict: 'E',
+      terminal: true
+    };
+  });
+  angular.module('mgcrea.ngStrapDocs').directive('highlightBlock', [ '$window', 'indent', function($window, indent) {
+    return {
+      compile: function(element, attr) {
+        element.html(indent(element.html()));
+        return function postLink(scope, element, attr) {
+          $window.hljs.highlightBlock(element[0]);
+        };
+      }
+    };
+  } ]);
   angular.module('mgcrea.ngPlunkr', [ 'mgcrea.ngStrap.helpers.debounce' ]).run([ '$templateCache', 'version', function($templateCache, version) {
     var ngVersion = '1.3.15';
     var templateHtml = '' + '<!DOCTYPE html>\n' + '<html ng-app="{{ moduleName }}">\n' + '\n' + '  <head>\n' + '    <meta charset="utf-8" />\n' + '    <title>AngularJS Plunker</title>\n' + '    <script>document.write(\'<base href="\' + document.location + \'" />\');</script>\n' + '    <link rel="stylesheet" href="//cdn.jsdelivr.net/fontawesome/4.3.0/css/font-awesome.css">\n' + '    <link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap/3.3.4/css/bootstrap.min.css">\n' + '    <link rel="stylesheet" href="//mgcrea.github.io/angular-strap/styles/libs.min.css">\n' + '    <link rel="stylesheet" href="//mgcrea.github.io/angular-strap/styles/docs.min.css">\n' + '    <link rel="stylesheet" href="style.css" />\n' + '    <script src="//cdn.jsdelivr.net/angularjs/' + ngVersion + '/angular.min.js" data-semver="' + ngVersion + '"></script>\n' + '    <script src="//cdn.jsdelivr.net/angularjs/' + ngVersion + '/angular-animate.min.js" data-semver="' + ngVersion + '"></script>\n' + '    <script src="//cdn.jsdelivr.net/angularjs/' + ngVersion + '/angular-sanitize.min.js" data-semver="' + ngVersion + '"></script>\n' + '    <script src="//mgcrea.github.io/angular-strap/dist/angular-strap.js" data-semver="' + version + '"></script>\n' + '    <script src="//mgcrea.github.io/angular-strap/dist/angular-strap.tpl.js" data-semver="' + version + '"></script>\n' + '    <script src="//mgcrea.github.io/angular-strap/docs/angular-strap.docs.tpl.js" data-semver="' + version + '"></script>\n' + '    <script src="app.js"></script>\n' + '  </head>\n' + '\n' + '  <body ng-controller="MainCtrl">\n' + '\n{{ contentHtml }}\n' + '  </body>\n' + '\n' + '</html>\n';
@@ -194,39 +229,4 @@
     lines.push('');
     return lines.join('\n');
   });
-  angular.module('mgcrea.ngStrapDocs').directive('appendSource', [ '$window', '$compile', 'indent', function($window, $compile, indent) {
-    return {
-      compile: function(element, attr) {
-        var options = {
-          placement: 'after'
-        };
-        angular.forEach([ 'placement', 'hlClass' ], function(key) {
-          if (angular.isDefined(attr[key])) options[key] = attr[key];
-        });
-        var hlElement = angular.element('<div class="highlight" ng-non-bindable><pre><code class="html" style="margin:0"></code></pre></div>');
-        var codeElement = hlElement.children('pre').children('code');
-        var elementHtml = indent(element.html());
-        codeElement.text(elementHtml);
-        if (options.hlClass) codeElement.addClass(options.hlClass);
-        element[options.placement](hlElement);
-        $window.hljs.highlightBlock(codeElement[0]);
-      }
-    };
-  } ]);
-  angular.module('mgcrea.ngStrapDocs').directive('code', function() {
-    return {
-      restrict: 'E',
-      terminal: true
-    };
-  });
-  angular.module('mgcrea.ngStrapDocs').directive('highlightBlock', [ '$window', 'indent', function($window, indent) {
-    return {
-      compile: function(element, attr) {
-        element.html(indent(element.html()));
-        return function postLink(scope, element, attr) {
-          $window.hljs.highlightBlock(element[0]);
-        };
-      }
-    };
-  } ]);
 })(window, document);

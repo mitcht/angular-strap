@@ -7,17 +7,6 @@
  */
 (function(window, document, undefined) {
   'use strict';
-  angular.module('mgcrea.ngStrapDocs').config([ '$asideProvider', function($asideProvider) {
-    angular.extend($asideProvider.defaults, {
-      container: 'body',
-      html: true
-    });
-  } ]).controller('AsideDemoCtrl', [ '$scope', function($scope) {
-    $scope.aside = {
-      title: 'Title',
-      content: 'Hello Aside<br />This is a multiline message!'
-    };
-  } ]);
   angular.module('mgcrea.ngStrapDocs').controller('AlertDemoCtrl', [ '$scope', '$templateCache', '$timeout', '$alert', function($scope, $templateCache, $timeout, $alert) {
     $scope.alert = {
       title: 'Holy guacamole!',
@@ -36,6 +25,17 @@
       myAlert.show();
     };
   } ]);
+  angular.module('mgcrea.ngStrapDocs').config([ '$asideProvider', function($asideProvider) {
+    angular.extend($asideProvider.defaults, {
+      container: 'body',
+      html: true
+    });
+  } ]).controller('AsideDemoCtrl', [ '$scope', function($scope) {
+    $scope.aside = {
+      title: 'Title',
+      content: 'Hello Aside<br />This is a multiline message!'
+    };
+  } ]);
   angular.module('mgcrea.ngStrapDocs').controller('ButtonDemoCtrl', [ '$scope', function($scope) {
     $scope.button = {
       toggle: false,
@@ -45,6 +45,21 @@
         right: false
       },
       radio: 'left'
+    };
+  } ]);
+  angular.module('mgcrea.ngStrapDocs').config([ '$datepickerProvider', function($datepickerProvider) {
+    angular.extend($datepickerProvider.defaults, {
+      dateFormat: 'dd/MM/yyyy',
+      startWeek: 1
+    });
+  } ]).controller('DatepickerDemoCtrl', [ '$scope', '$http', function($scope, $http) {
+    $scope.selectedDate = new Date();
+    $scope.selectedDateAsNumber = Date.UTC(1986, 1, 22);
+    $scope.getType = function(key) {
+      return Object.prototype.toString.call($scope[key]);
+    };
+    $scope.clearDates = function() {
+      $scope.selectedDate = null;
     };
   } ]);
   angular.module('mgcrea.ngStrapDocs').controller('CollapseDemoCtrl', [ '$scope', '$templateCache', function($scope, $templateCache) {
@@ -67,21 +82,6 @@
         title: 'Collapsible Group Item #4',
         body: 'Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid.'
       });
-    };
-  } ]);
-  angular.module('mgcrea.ngStrapDocs').config([ '$datepickerProvider', function($datepickerProvider) {
-    angular.extend($datepickerProvider.defaults, {
-      dateFormat: 'dd/MM/yyyy',
-      startWeek: 1
-    });
-  } ]).controller('DatepickerDemoCtrl', [ '$scope', '$http', function($scope, $http) {
-    $scope.selectedDate = new Date();
-    $scope.selectedDateAsNumber = Date.UTC(1986, 1, 22);
-    $scope.getType = function(key) {
-      return Object.prototype.toString.call($scope[key]);
-    };
-    $scope.clearDates = function() {
-      $scope.selectedDate = null;
     };
   } ]);
   angular.module('mgcrea.ngStrapDocs').config([ '$dropdownProvider', function($dropdownProvider) {
@@ -146,25 +146,6 @@
   angular.module('mgcrea.ngStrapDocs').controller('NavbarDemoCtrl', [ '$scope', '$location', function($scope, $location) {
     $scope.$location = $location;
   } ]);
-  angular.module('mgcrea.ngStrapDocs').config([ '$popoverProvider', function($popoverProvider) {
-    angular.extend($popoverProvider.defaults, {
-      html: true
-    });
-  } ]).controller('PopoverDemoCtrl', [ '$scope', '$popover', function($scope, $popover) {
-    $scope.popover = {
-      title: 'Title',
-      content: 'Hello Popover<br />This is a multiline message!'
-    };
-    var asAServiceOptions = {
-      title: $scope.popover.title,
-      content: $scope.popover.content,
-      trigger: 'manual'
-    };
-    var myPopover = $popover(angular.element(document.querySelector('#popover-as-service')), asAServiceOptions);
-    $scope.togglePopover = function() {
-      myPopover.$promise.then(myPopover.toggle);
-    };
-  } ]);
   angular.module('mgcrea.ngStrapDocs').controller('SelectDemoCtrl', [ '$scope', '$http', function($scope, $http) {
     $scope.selectedIcon = '';
     $scope.selectedIcons = [ 'Globe', 'Heart' ];
@@ -183,6 +164,25 @@
     } ];
     $scope.selectedMonth = 0;
     $scope.months = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
+  } ]);
+  angular.module('mgcrea.ngStrapDocs').config([ '$popoverProvider', function($popoverProvider) {
+    angular.extend($popoverProvider.defaults, {
+      html: true
+    });
+  } ]).controller('PopoverDemoCtrl', [ '$scope', '$popover', function($scope, $popover) {
+    $scope.popover = {
+      title: 'Title',
+      content: 'Hello Popover<br />This is a multiline message!'
+    };
+    var asAServiceOptions = {
+      title: $scope.popover.title,
+      content: $scope.popover.content,
+      trigger: 'manual'
+    };
+    var myPopover = $popover(angular.element(document.querySelector('#popover-as-service')), asAServiceOptions);
+    $scope.togglePopover = function() {
+      myPopover.$promise.then(myPopover.toggle);
+    };
   } ]);
   angular.module('mgcrea.ngStrapDocs').controller('TabDemoCtrl', [ '$scope', '$templateCache', function($scope, $templateCache) {
     $scope.tabs = [ {
