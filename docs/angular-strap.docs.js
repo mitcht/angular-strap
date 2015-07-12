@@ -132,7 +132,7 @@
     MyModalController.$inject = [ '$scope' ];
     var myModal = $modal({
       controller: MyModalController,
-      template: 'modal/docs/modal.demo.tpl.html',
+      templateUrl: 'modal/docs/modal.demo.tpl.html',
       show: false
     });
     $scope.showModal = function() {
