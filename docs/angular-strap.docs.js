@@ -7,6 +7,17 @@
  */
 (function(window, document, undefined) {
   'use strict';
+  angular.module('mgcrea.ngStrapDocs').config([ '$asideProvider', function($asideProvider) {
+    angular.extend($asideProvider.defaults, {
+      container: 'body',
+      html: true
+    });
+  } ]).controller('AsideDemoCtrl', [ '$scope', function($scope) {
+    $scope.aside = {
+      title: 'Title',
+      content: 'Hello Aside<br />This is a multiline message!'
+    };
+  } ]);
   angular.module('mgcrea.ngStrapDocs').controller('AlertDemoCtrl', [ '$scope', '$templateCache', '$timeout', '$alert', function($scope, $templateCache, $timeout, $alert) {
     $scope.alert = {
       title: 'Holy guacamole!',
@@ -25,17 +36,6 @@
       myAlert.show();
     };
   } ]);
-  angular.module('mgcrea.ngStrapDocs').config([ '$asideProvider', function($asideProvider) {
-    angular.extend($asideProvider.defaults, {
-      container: 'body',
-      html: true
-    });
-  } ]).controller('AsideDemoCtrl', [ '$scope', function($scope) {
-    $scope.aside = {
-      title: 'Title',
-      content: 'Hello Aside<br />This is a multiline message!'
-    };
-  } ]);
   angular.module('mgcrea.ngStrapDocs').controller('ButtonDemoCtrl', [ '$scope', function($scope) {
     $scope.button = {
       toggle: false,
@@ -45,21 +45,6 @@
         right: false
       },
       radio: 'left'
-    };
-  } ]);
-  angular.module('mgcrea.ngStrapDocs').config([ '$datepickerProvider', function($datepickerProvider) {
-    angular.extend($datepickerProvider.defaults, {
-      dateFormat: 'dd/MM/yyyy',
-      startWeek: 1
-    });
-  } ]).controller('DatepickerDemoCtrl', [ '$scope', '$http', function($scope, $http) {
-    $scope.selectedDate = new Date();
-    $scope.selectedDateAsNumber = Date.UTC(1986, 1, 22);
-    $scope.getType = function(key) {
-      return Object.prototype.toString.call($scope[key]);
-    };
-    $scope.clearDates = function() {
-      $scope.selectedDate = null;
     };
   } ]);
   angular.module('mgcrea.ngStrapDocs').controller('CollapseDemoCtrl', [ '$scope', '$templateCache', function($scope, $templateCache) {
@@ -82,6 +67,21 @@
         title: 'Collapsible Group Item #4',
         body: 'Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid.'
       });
+    };
+  } ]);
+  angular.module('mgcrea.ngStrapDocs').config([ '$datepickerProvider', function($datepickerProvider) {
+    angular.extend($datepickerProvider.defaults, {
+      dateFormat: 'dd/MM/yyyy',
+      startWeek: 1
+    });
+  } ]).controller('DatepickerDemoCtrl', [ '$scope', '$http', function($scope, $http) {
+    $scope.selectedDate = new Date();
+    $scope.selectedDateAsNumber = Date.UTC(1986, 1, 22);
+    $scope.getType = function(key) {
+      return Object.prototype.toString.call($scope[key]);
+    };
+    $scope.clearDates = function() {
+      $scope.selectedDate = null;
     };
   } ]);
   angular.module('mgcrea.ngStrapDocs').config([ '$dropdownProvider', function($dropdownProvider) {
