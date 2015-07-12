@@ -126,12 +126,10 @@
       content: 'Hello Modal<br />This is a multiline message!'
     };
     function MyModalController($scope, $q) {
-      console.warn('in');
-      $scope.foo = 'bar';
+      $scope.title = 'Some Title';
+      $scope.content = 'Hello Modal<br />This is a multiline message from a controller!';
     }
     var myModal = $modal({
-      title: 'Title',
-      content: 'Hello Modal<br />This is a multiline message!',
       controller: MyModalController,
       template: 'modal/docs/modal.demo.tpl.html',
       show: false
@@ -145,25 +143,6 @@
   } ]);
   angular.module('mgcrea.ngStrapDocs').controller('NavbarDemoCtrl', [ '$scope', '$location', function($scope, $location) {
     $scope.$location = $location;
-  } ]);
-  angular.module('mgcrea.ngStrapDocs').controller('SelectDemoCtrl', [ '$scope', '$http', function($scope, $http) {
-    $scope.selectedIcon = '';
-    $scope.selectedIcons = [ 'Globe', 'Heart' ];
-    $scope.icons = [ {
-      value: 'Gear',
-      label: '<i class="fa fa-gear"></i> Gear'
-    }, {
-      value: 'Globe',
-      label: '<i class="fa fa-globe"></i> Globe'
-    }, {
-      value: 'Heart',
-      label: '<i class="fa fa-heart"></i> Heart'
-    }, {
-      value: 'Camera',
-      label: '<i class="fa fa-camera"></i> Camera'
-    } ];
-    $scope.selectedMonth = 0;
-    $scope.months = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
   } ]);
   angular.module('mgcrea.ngStrapDocs').config([ '$popoverProvider', function($popoverProvider) {
     angular.extend($popoverProvider.defaults, {
@@ -183,6 +162,25 @@
     $scope.togglePopover = function() {
       myPopover.$promise.then(myPopover.toggle);
     };
+  } ]);
+  angular.module('mgcrea.ngStrapDocs').controller('SelectDemoCtrl', [ '$scope', '$http', function($scope, $http) {
+    $scope.selectedIcon = '';
+    $scope.selectedIcons = [ 'Globe', 'Heart' ];
+    $scope.icons = [ {
+      value: 'Gear',
+      label: '<i class="fa fa-gear"></i> Gear'
+    }, {
+      value: 'Globe',
+      label: '<i class="fa fa-globe"></i> Globe'
+    }, {
+      value: 'Heart',
+      label: '<i class="fa fa-heart"></i> Heart'
+    }, {
+      value: 'Camera',
+      label: '<i class="fa fa-camera"></i> Camera'
+    } ];
+    $scope.selectedMonth = 0;
+    $scope.months = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
   } ]);
   angular.module('mgcrea.ngStrapDocs').controller('TabDemoCtrl', [ '$scope', '$templateCache', function($scope, $templateCache) {
     $scope.tabs = [ {
