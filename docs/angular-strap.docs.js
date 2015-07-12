@@ -125,10 +125,11 @@
       title: 'Title',
       content: 'Hello Modal<br />This is a multiline message!'
     };
-    function MyModalController($scope, $q) {
+    function MyModalController($scope) {
       $scope.title = 'Some Title';
       $scope.content = 'Hello Modal<br />This is a multiline message from a controller!';
     }
+    MyModalController.$inject = [ '$scope' ];
     var myModal = $modal({
       controller: MyModalController,
       template: 'modal/docs/modal.demo.tpl.html',
