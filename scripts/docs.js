@@ -1,13 +1,13 @@
 /**
  * angular-strap
- * @version v2.3.0 - 2015-07-12
+ * @version v2.3.1 - 2015-07-19
  * @link http://mgcrea.github.io/angular-strap
  * @author Olivier Louvignes <olivier@mg-crea.com> (https://github.com/mgcrea)
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
 (function(window, document, undefined) {
   'use strict';
-  angular.module('mgcrea.ngStrapDocs', [ 'mgcrea.ngStrap', 'mgcrea.ngPlunkr', 'ngRoute', 'ngAnimate' ]).constant('version', 'v2.3.0').config([ '$plunkrProvider', 'version', function($plunkrProvider, version) {
+  angular.module('mgcrea.ngStrapDocs', [ 'mgcrea.ngStrap', 'mgcrea.ngPlunkr', 'ngRoute', 'ngAnimate' ]).constant('version', 'v2.3.1').config([ '$plunkrProvider', 'version', function($plunkrProvider, version) {
     angular.extend($plunkrProvider.defaults, {
       plunkrTitle: 'AngularStrap Example Plunkr',
       plunkrTags: [ 'angular', 'angular-strap' ],
@@ -46,7 +46,7 @@
     };
   } ]);
   angular.module('mgcrea.ngPlunkr', [ 'mgcrea.ngStrap.helpers.debounce' ]).run([ '$templateCache', 'version', function($templateCache, version) {
-    var ngVersion = '1.3.15';
+    var ngVersion = '1.4.2';
     var templateHtml = '' + '<!DOCTYPE html>\n' + '<html ng-app="{{ moduleName }}">\n' + '\n' + '  <head>\n' + '    <meta charset="utf-8" />\n' + '    <title>AngularJS Plunker</title>\n' + '    <script>document.write(\'<base href="\' + document.location + \'" />\');</script>\n' + '    <link rel="stylesheet" href="//cdn.jsdelivr.net/fontawesome/4.3.0/css/font-awesome.css">\n' + '    <link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap/3.3.4/css/bootstrap.min.css">\n' + '    <link rel="stylesheet" href="//mgcrea.github.io/angular-strap/styles/libs.min.css">\n' + '    <link rel="stylesheet" href="//mgcrea.github.io/angular-strap/styles/docs.min.css">\n' + '    <link rel="stylesheet" href="style.css" />\n' + '    <script src="//cdn.jsdelivr.net/angularjs/' + ngVersion + '/angular.min.js" data-semver="' + ngVersion + '"></script>\n' + '    <script src="//cdn.jsdelivr.net/angularjs/' + ngVersion + '/angular-animate.min.js" data-semver="' + ngVersion + '"></script>\n' + '    <script src="//cdn.jsdelivr.net/angularjs/' + ngVersion + '/angular-sanitize.min.js" data-semver="' + ngVersion + '"></script>\n' + '    <script src="//mgcrea.github.io/angular-strap/dist/angular-strap.js" data-semver="' + version + '"></script>\n' + '    <script src="//mgcrea.github.io/angular-strap/dist/angular-strap.tpl.js" data-semver="' + version + '"></script>\n' + '    <script src="//mgcrea.github.io/angular-strap/docs/angular-strap.docs.tpl.js" data-semver="' + version + '"></script>\n' + '    <script src="app.js"></script>\n' + '  </head>\n' + '\n' + '  <body ng-controller="MainCtrl">\n' + '\n{{ contentHtml }}\n' + '  </body>\n' + '\n' + '</html>\n';
     $templateCache.put('$plunkr-html', templateHtml);
     var templateCss = '' + '/* Put your css in here */\n' + '\n{{ contentCss }}\n';

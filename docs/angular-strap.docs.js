@@ -1,6 +1,6 @@
 /**
  * angular-strap
- * @version v2.3.0 - 2015-07-12
+ * @version v2.3.1 - 2015-07-19
  * @link http://mgcrea.github.io/angular-strap
  * @author Olivier Louvignes <olivier@mg-crea.com> (https://github.com/mgcrea)
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -183,6 +183,12 @@
     $scope.selectedMonth = 0;
     $scope.months = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
   } ]);
+  angular.module('mgcrea.ngStrapDocs').controller('TimepickerDemoCtrl', [ '$scope', '$http', function($scope, $http) {
+    $scope.time = new Date(1970, 0, 1, 10, 30, 40);
+    $scope.selectedTimeAsNumber = 10 * 36e5 + 30 * 6e4 + 40 * 1e3;
+    $scope.selectedTimeAsString = '10:00';
+    $scope.sharedDate = new Date(new Date().setMinutes(0, 0));
+  } ]);
   angular.module('mgcrea.ngStrapDocs').controller('TabDemoCtrl', [ '$scope', '$templateCache', function($scope, $templateCache) {
     $scope.tabs = [ {
       title: 'Home',
@@ -204,12 +210,6 @@
     $scope.toggleThirdTab = function() {
       $scope.tabs[2].disabled = !$scope.tabs[2].disabled;
     };
-  } ]);
-  angular.module('mgcrea.ngStrapDocs').controller('TimepickerDemoCtrl', [ '$scope', '$http', function($scope, $http) {
-    $scope.time = new Date(1970, 0, 1, 10, 30, 40);
-    $scope.selectedTimeAsNumber = 10 * 36e5 + 30 * 6e4 + 40 * 1e3;
-    $scope.selectedTimeAsString = '10:00';
-    $scope.sharedDate = new Date(new Date().setMinutes(0, 0));
   } ]);
   angular.module('mgcrea.ngStrapDocs').config([ '$tooltipProvider', function($tooltipProvider) {
     angular.extend($tooltipProvider.defaults, {
