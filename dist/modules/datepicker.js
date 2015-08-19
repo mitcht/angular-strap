@@ -1,6 +1,6 @@
 /**
  * angular-strap
- * @version v2.3.1 - 2015-07-31
+ * @version v2.3.1 - 2015-08-19
  * @link http://mgcrea.github.io/angular-strap
  * @author Olivier Louvignes <olivier@mg-crea.com> (https://github.com/mgcrea)
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -279,7 +279,7 @@ angular.module('mgcrea.ngStrap.datepicker', [ 'mgcrea.ngStrap.helpers.dateParser
       }
       controller.$parsers.unshift(function(viewValue) {
         var date;
-        if (defaults.overrideValidation === 'true') {
+        if (defaults.overrideValidation === 'true' && viewValue instanceof Date === false) {
           return viewValue;
         }
         if (!viewValue) {
