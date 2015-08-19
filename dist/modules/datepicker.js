@@ -1,6 +1,6 @@
 /**
  * angular-strap
- * @version v2.3.1 - 2015-07-24
+ * @version v2.3.1 - 2015-07-31
  * @link http://mgcrea.github.io/angular-strap
  * @author Olivier Louvignes <olivier@mg-crea.com> (https://github.com/mgcrea)
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -37,7 +37,8 @@ angular.module('mgcrea.ngStrap.datepicker', [ 'mgcrea.ngStrap.helpers.dateParser
     startWeek: 0,
     daysOfWeekDisabled: '',
     iconLeft: 'glyphicon glyphicon-chevron-left',
-    iconRight: 'glyphicon glyphicon-chevron-right'
+    iconRight: 'glyphicon glyphicon-chevron-right',
+    overrideValidation: 'false'
   };
   this.$get = [ '$window', '$document', '$rootScope', '$sce', '$dateFormatter', 'datepickerViews', '$tooltip', '$timeout', function($window, $document, $rootScope, $sce, $dateFormatter, datepickerViews, $tooltip, $timeout) {
     var bodyEl = angular.element($window.document.body);
@@ -278,6 +279,9 @@ angular.module('mgcrea.ngStrap.datepicker', [ 'mgcrea.ngStrap.helpers.dateParser
       }
       controller.$parsers.unshift(function(viewValue) {
         var date;
+        if (defaults.overrideValidation === 'true') {
+          return viewValue;
+        }
         if (!viewValue) {
           controller.$setValidity('date', true);
           return null;
